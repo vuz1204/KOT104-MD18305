@@ -186,21 +186,30 @@ fun VerticalImageList(imageList: List<Int>) {
 
 @Composable
 fun NoteApp(paddingValues: PaddingValues) {
-    val notes = listOf("Note 1", "Note 2", "Note 3", "Note 4", "Note 5")
+//    val notes = listOf("Note 1", "Note 2", "Note 3", "Note 4", "Note 5")
+    val listSinhVien = mutableListOf<StudentModel>() // Goi class java tu kotlin jetpack compose
+    listSinhVien.add(StudentModel("PH33438", "Nguyễn Văn Vũ", 8.5f, false))
+    listSinhVien.add(StudentModel("PH33437", "Bùi Quang Vinh", 8f, false))
+    listSinhVien.add(StudentModel("PH33440", "Tô Văn Cường", 7.5f, true))
 
     Column(
         modifier = Modifier
             .padding(paddingValues)
             .padding(8.dp)
+        , horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        notes.forEach { note ->
-            NoteCard(noteText = note)
+        Text(
+            text = "Quản lý sinh viên",
+            style = MaterialTheme.typography.titleLarge
+        )
+        listSinhVien.forEach { sinhVien ->
+            NoteCard(sinhVien)
         }
     }
 }
 
 @Composable
-fun NoteCard(noteText: String) {
+fun NoteCard(studentModel: StudentModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -208,13 +217,20 @@ fun NoteCard(noteText: String) {
             .background(color = Color.LightGray, shape = MaterialTheme.shapes.medium)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = noteText,
+            Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(16.dp),
-                style = MaterialTheme.typography.bodyLarge
-            )
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "${studentModel.mssv} - ${studentModel.hoTen}",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = "Điểm TB: ${studentModel.diemTB}",
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
             Icon(
                 imageVector = Icons.Filled.KeyboardArrowDown,
                 contentDescription = "Expand Note",

@@ -31,17 +31,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
 import fpoly.vunvph33438.assignment_ph33438.R
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Merriweather_bold
-import fpoly.vunvph33438.assignment_ph33438.ui.theme.Merriweather_regular
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Nunitosans
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navController: NavController) {
     val context = LocalContext.current
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -160,7 +159,7 @@ fun SignUpScreen() {
                     color = Color.Gray,
                     fontSize = 15.sp
                 )
-                TextButton(onClick = { /* Handle sign up */ }) {
+                TextButton(onClick = { navController.navigate("Login") }) {
                     Text(
                         text = "SIGN IN",
                         fontFamily = Nunitosans,
@@ -172,10 +171,4 @@ fun SignUpScreen() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SignUpScreenPreview() {
-    SignUpScreen()
 }
