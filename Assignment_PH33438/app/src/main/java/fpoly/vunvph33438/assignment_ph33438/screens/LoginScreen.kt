@@ -1,9 +1,23 @@
+package fpoly.vunvph33438.assignment_ph33438.screens
+
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,17 +31,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
 import fpoly.vunvph33438.assignment_ph33438.R
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Merriweather_bold
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Merriweather_regular
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Nunitosans
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -38,8 +52,7 @@ fun LoginScreen() {
             .padding(30.dp)
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
             Divider(
                 modifier = Modifier.weight(1f)
@@ -115,6 +128,9 @@ fun LoginScreen() {
                         Toast.makeText(
                             context, "Login successful", Toast.LENGTH_LONG
                         ).show()
+                        navController.navigate("Home"){
+                            popUpTo("Login"){inclusive = true}
+                        }
                     } else {
                         Toast.makeText(
                             context, "Please enter username and password", Toast.LENGTH_LONG
@@ -128,14 +144,15 @@ fun LoginScreen() {
                     .height(100.dp)
                     .padding(vertical = 25.dp)
             ) {
-                Text(text = "Log in",
+                Text(
+                    text = "Log in",
                     fontFamily = Nunitosans,
                     fontWeight = FontWeight.W600,
                     color = Color.White,
                     fontSize = 18.sp
                 )
             }
-            TextButton(onClick = { /* Handle sign up */ }) {
+            TextButton(onClick = { navController.navigate("SignUp") }) {
                 Text(
                     text = "SIGN UP",
                     fontFamily = Nunitosans,
@@ -146,10 +163,4 @@ fun LoginScreen() {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
 }

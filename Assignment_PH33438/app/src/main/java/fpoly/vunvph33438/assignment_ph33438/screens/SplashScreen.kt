@@ -20,16 +20,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
 import fpoly.vunvph33438.assignment_ph33438.R
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Gelasio
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Nunitosans
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -83,7 +83,9 @@ fun SplashScreen() {
             Spacer(modifier = Modifier.height(150.dp))
 
             Button(
-                onClick = { },
+                onClick = { navController.navigate("Login"){
+                    popUpTo("Splash"){inclusive = true}
+                } },
                 shape = RoundedCornerShape(8),
                 colors = ButtonDefaults.buttonColors(containerColor = Color("#303030".toColorInt())),
                 modifier = Modifier.height(54.dp).width(159.dp)
@@ -93,10 +95,4 @@ fun SplashScreen() {
 
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SplashScreenPreview() {
-    SplashScreen()
 }
