@@ -33,12 +33,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavHostController
 import fpoly.vunvph33438.assignment_ph33438.R
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Gelasio
 import fpoly.vunvph33438.assignment_ph33438.ui.theme.Nunitosans
 
 @Composable
-fun DetailsScreen() {
+fun DetailsScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -53,7 +54,7 @@ fun DetailsScreen() {
                 painter = painterResource(id = R.drawable.minimal_stand_detail),
                 contentDescription = "Minimal Stand",
                 modifier = Modifier
-                    .width(340.dp)
+                    .width(357.dp)
                     .height(480.dp)
                     .align(Alignment.CenterEnd),
                 contentScale = ContentScale.Crop
@@ -67,7 +68,7 @@ fun DetailsScreen() {
                     .background(Color.White),
                 contentAlignment = Alignment.Center,
             ) {
-                IconButton(onClick = { /* TODO: Handle back navigation */ }) {
+                IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_back),
                         contentDescription = "Back",
@@ -93,22 +94,25 @@ fun DetailsScreen() {
                     IconButton(onClick = { }) {
                         Icon(
                             painter = painterResource(id = R.drawable.color1_detail),
-                            contentDescription = "Color",
-                            modifier = Modifier.fillMaxSize()
+                            contentDescription = "Color 1",
+                            modifier = Modifier.fillMaxSize(),
+                            tint = Color.Unspecified
                         )
                     }
                     IconButton(onClick = {}) {
                         Icon(
                             painter = painterResource(id = R.drawable.color2_detail),
-                            contentDescription = "Color",
-                            modifier = Modifier.fillMaxSize()
+                            contentDescription = "Color 2",
+                            modifier = Modifier.fillMaxSize(),
+                            tint = Color.Unspecified
                         )
                     }
                     IconButton(onClick = { }) {
                         Icon(
                             painter = painterResource(id = R.drawable.color3_detail),
-                            contentDescription = "Color",
-                            modifier = Modifier.fillMaxSize()
+                            contentDescription = "Color 3",
+                            modifier = Modifier.fillMaxSize(),
+                            tint = Color.Unspecified
                         )
                     }
                 }
@@ -141,8 +145,7 @@ fun DetailsScreen() {
                             .height(30.dp)
                             .width(30.dp)
                             .background(
-                                Color("#F0F0F0".toColorInt()),
-                                shape = RoundedCornerShape(6.dp)
+                                Color("#F0F0F0".toColorInt()), shape = RoundedCornerShape(6.dp)
                             ),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -165,8 +168,7 @@ fun DetailsScreen() {
                             .height(30.dp)
                             .width(30.dp)
                             .background(
-                                Color("#F0F0F0".toColorInt()),
-                                shape = RoundedCornerShape(6.dp)
+                                Color("#F0F0F0".toColorInt()), shape = RoundedCornerShape(6.dp)
                             ),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -220,8 +222,7 @@ fun DetailsScreen() {
                         .height(56.dp)
                         .width(60.dp)
                         .background(
-                            Color("#F0F0F0".toColorInt()),
-                            shape = RoundedCornerShape(8.dp)
+                            Color("#F0F0F0".toColorInt()), shape = RoundedCornerShape(8.dp)
                         ),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -235,8 +236,9 @@ fun DetailsScreen() {
                 Button(
                     onClick = { /* TODO: Add to cart */ },
                     modifier = Modifier
-                        .width(250.dp)
-                        .height(60.dp),
+                        .width(300.dp)
+                        .height(60.dp)
+                        .shadow(elevation = 8.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color("#303030".toColorInt())),
                     shape = RoundedCornerShape(8.dp)
                 ) {
@@ -252,8 +254,4 @@ fun DetailsScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DetailsScreenPreview() {
-    DetailsScreen()
-}
+
